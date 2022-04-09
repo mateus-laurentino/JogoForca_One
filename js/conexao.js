@@ -45,8 +45,8 @@ function InserirDado(palava){
 }
 
 function DefinePalavra(){
-    var palavra = JSON.stringify(dicionario[randomizacao()]);
-    palavra.value = arrumaPalavra(palavra);
+    var palavraSorteio = JSON.stringify(dicionario[randomizacao()]);
+    palavra.value = arrumaPalavra(palavraSorteio);
         
 }
    
