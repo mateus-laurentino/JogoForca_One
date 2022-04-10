@@ -56,9 +56,10 @@ function randomizacao(){
 }
 
 function arrumaPalavra(palavra){
-    palavra = palavra.replace('{','').replace('}','').replace('palavra','').replace(':','').replace(/[\\"]/g, '');
-    palavra = palavra.toUpperCase();
-    return palavra;
+    var newPalavra = String(palavra);
+    newPalavra = newPalavra.replace('{','').replace('}','').replace('palavra','').replace(':','').replace(/[\\"]/g, '');
+    newPalavra = newPalavra.toUpperCase();
+    return newPalavra;
 }
 
 function verifica_se_palavra_existe(){
@@ -74,8 +75,10 @@ function verifica_se_palavra_existe(){
             existe++;
         }
     }
-    if(existe==0){
+    if(existe==0 && palavraASalvar.trim()>0){
         return InserirDado(palavraASalvar);
+    }else if(palavraASalvar.trim()<=0){
+        return alert('Campo vazio!');
     }else{
         return alert('Essa palavra ja existe!');
     }
