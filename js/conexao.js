@@ -58,7 +58,7 @@ function randomizacao(){
 function arrumaPalavra(palavra){
     var newPalavra = String(palavra);
     newPalavra = newPalavra.replace('{','').replace('}','').replace('palavra','').replace(':','').replace(/[\\"]/g, '');
-    newPalavra = newPalavra.toUpperCase();
+    newPalavra = newPalavra.toUpperCase().trim();
     return newPalavra;
 }
 
@@ -66,7 +66,7 @@ function verifica_se_palavra_existe(){
     var palavraASalvar = palavra.value;
     var numeroDePalavras = Number(dicionario.length);
     var existe = 0;
-    palavraASalvar = palavraASalvar.toUpperCase();
+    palavraASalvar = arrumaPalavra(palavraASalvar);
     palavraASalvar = palavraASalvar.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
     for(var x=0 ;x<numeroDePalavras;x++){
         var palavraExistente = JSON.stringify(dicionario[x]);
@@ -75,11 +75,13 @@ function verifica_se_palavra_existe(){
             existe++;
         }
     }
-    if(existe==0 && palavraASalvar.trim()>0){
+    if(existe==0 && palavraASalvar.length>0){
         return InserirDado(palavraASalvar);
-    }else if(palavraASalvar.trim()<=0){
+    }else if(palavraASalvar.trim().length<=0){
+        palavra.value = '';
         return alert('Campo vazio!');
     }else{
+        palavra.value = '';
         return alert('Essa palavra ja existe!');
     }
 
